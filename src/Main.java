@@ -1,7 +1,4 @@
-import Players.AlwaysFirstAgent;
-import Players.CopyCatAgent;
-import Players.Player;
-import Players.RandomAgent;
+import Players.*;
 import javafx.util.Pair;
 import java.util.ArrayList;
 
@@ -59,6 +56,7 @@ public class Main {
         players.add(new CopyCatAgent());
         players.add(new RandomAgent());
         players.add(new AlwaysFirstAgent());
+        players.add(new HistoryBasedAgent());
 
         for (int j = 0; j < 10; j++) {
 
