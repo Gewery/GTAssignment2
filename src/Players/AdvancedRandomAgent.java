@@ -10,7 +10,7 @@ public class AdvancedRandomAgent extends Player {
 
     @Override
     public int move(int opponentLastMove, int xA, int xB, int xC) {
-        if (rn.nextInt(2) == 0) // return the best field
+        if (rn.nextInt(2) == 0) // return the best field with the probability 0.5
             if (xA >= xB && xA >= xC)
                 return 1;
             else if (xB >= xA && xB >= xC)

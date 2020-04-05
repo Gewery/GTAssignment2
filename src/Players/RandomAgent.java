@@ -12,5 +12,5 @@ public class RandomAgent extends Player {
     @Override
     public int move(int opponentLastMove, int xA, int xB, int xC) {
         return rn.nextInt(3) + 1;
-    }
+    } // makes random choice
 }

@@ -9,5 +9,5 @@ public class AlwaysFirstAgent extends Player {
     @Override
     public int move(int opponentLastMove, int xA, int xB, int xC) {
         return 1;
-    }
+    } // always chose the first field
 }
