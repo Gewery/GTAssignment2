@@ -36,15 +36,17 @@ public class Main {
         return new Pair<>(scoreA, scoreB);
     }
 
-    static ArrayList<Double> runTournament(ArrayList<Player> players) {
+    static ArrayList<Double> runTournament(ArrayList<Player> players, int N) {
         ArrayList<Double> results = new ArrayList<>();
         for (int i = 0; i < players.size(); i++)
             results.add(0.0);
-        for (int i = 0; i < players.size(); i++) {
-            for (int j = i + 1; j < players.size(); j++) {
-                Pair<Double, Double> result = runOneGame(players.get(i), players.get(j));
-                results.set(i, results.get(i) + result.getKey());
-                results.set(j, results.get(j) + result.getValue());
+        for (int k = 0; k < N; k++) {
+            for (int i = 0; i < players.size(); i++) {
+                for (int j = i + 1; j < players.size(); j++) {
+                    Pair<Double, Double> result = runOneGame(players.get(i), players.get(j));
+                    results.set(i, results.get(i) + result.getKey());
+                    results.set(j, results.get(j) + result.getValue());
+                }
             }
         }
 
@@ -53,19 +55,20 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<Player> players = new ArrayList<>();
-        players.add(new CopyCatAgent());
-        players.add(new RandomAgent());
-        players.add(new AlwaysFirstAgent());
-        players.add(new HistoryBasedAgent());
+//        players.add(new CopyCatAgent());
+//        players.add(new RandomAgent());
+//        players.add(new AlwaysFirstAgent());
+//        players.add(new HistoryBasedAgent());
+        players.add(new MaxXAgent());
+//        players.add(new GentleAgent());
+        players.add(new AdvancedRandomAgent());
+        players.add(new AdvancedHistoryBasedAgent());
 
-        for (int j = 0; j < 10; j++) {
+        ArrayList<Double> results = runTournament(players, 100);
 
-            ArrayList<Double> results = runTournament(players);
-
-            System.out.println("Scores:");
-            for (int i = 0; i < players.size(); i++) {
-                System.out.println(players.get(i).getClass() + " : " + results.get(i));
-            }
+        System.out.println("Scores:");
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println(players.get(i).getClass() + " : " + results.get(i));
         }
     }
 }
