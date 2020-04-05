@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import java.util.ArrayList;
 
 public class Tests {
+    // (more tests are described in the report)
     @Test
     public void tournamentDanilKabirovCodeVSDanilKabirovCode() {
         ArrayList<Player> players = new ArrayList<>();
@@ -107,6 +108,46 @@ public class Tests {
         Assertions.assertEquals(3, results.size()); // right size array
         Assertions.assertTrue(results.get(0) > 0); // DanilKabirovCode has more than 0 score
         Assertions.assertTrue(results.get(0) > results.get(1) && results.get(0) > results.get(2)); // DanilKabirovCode has more than both MaxXAgents
+    }
+
+    @Test
+    public void tournamentDanilKabirovCodeVSAdvancedRandomAgent() {
+        ArrayList<Player> players = new ArrayList<>();
+        // initialize the ArrayList by players that will play the tournament
+        players.add(new DanilKabirovCode());
+        players.add(new AdvancedRandomAgent());
+
+        ArrayList<Double> results = runTournament(players, 100); // run the tournament 100 times
+
+        System.out.println("Scores:");
+        for (int i = 0; i < players.size(); i++) { // print the results
+            System.out.println(players.get(i).getClass() + " : " + results.get(i));
+        }
+
+        Assertions.assertEquals(2, results.size()); // right size array
+        Assertions.assertTrue(results.get(0) > 0); // DanilKabirovCode has more than 0 score
+        Assertions.assertTrue(results.get(0) > results.get(1)); // DanilKabirovCode has more than AdvancedRandomAgent
+    }
+
+    @Test
+    public void tournamentDanilKabirovCodeVSAdvancedRandomAgentVSMaxXAgent() {
+        ArrayList<Player> players = new ArrayList<>();
+        // initialize the ArrayList by players that will play the tournament
+        players.add(new DanilKabirovCode());
+        players.add(new MaxXAgent());
+        players.add(new AdvancedRandomAgent());
+
+        ArrayList<Double> results = runTournament(players, 100); // run the tournament 100 times
+
+        System.out.println("Scores:");
+        for (int i = 0; i < players.size(); i++) { // print the results
+            System.out.println(players.get(i).getClass() + " : " + results.get(i));
+        }
+
+        Assertions.assertEquals(3, results.size()); // right size array
+        Assertions.assertTrue(results.get(0) > 0); // DanilKabirovCode has more than 0 score
+        Assertions.assertTrue(results.get(0) > results.get(2)); // DanilKabirovCode has score more than AdvancedRandom
+        Assertions.assertTrue(results.get(0) < results.get(1)); // DanilKabirovCode has score less than MaxXAgent
     }
 
     final static int NUMBER_OF_ROUNDS = 10;
